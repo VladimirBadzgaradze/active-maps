@@ -3,7 +3,7 @@ import sys
 import pygame
 import geocoder
 from static_map import request_static_map
-LAT_STEP = 0.008  # Шаги при движении карты по широте и долготе
+LAT_STEP = 0.002  # Шаги при движении карты по широте и долготе
 LON_STEP = 0.002
 
 class MapParams(object):
@@ -23,6 +23,12 @@ class MapParams(object):
     def update(self, event):
         if event.key == pygame.K_LEFT:
             self.lon = str(float(self.lon) - LON_STEP * 2 ** (15 - float(self.zoom)))
+        if event.key == pygame.K_RIGHT:
+            self.lon = str(float(self.lon) + LON_STEP * 2 ** (15 - float(self.zoom)))
+        if event.key == pygame.K_UP:
+            self.lat = str(float(self.lat) + LAT_STEP * 2 ** (15 - float(self.zoom)))
+        if event.key == pygame.K_DOWN:
+            self.lat = str(float(self.lat) - LAT_STEP * 2 ** (15 - float(self.zoom)))
 
     def search_toponym(self, address):
         code, toponym = geocoder.request_toponym(address)

@@ -6,6 +6,7 @@ from static_map import request_static_map
 LAT_STEP = 0.008  # Шаги при движении карты по широте и долготе
 LON_STEP = 0.002
 
+
 class MapParams(object):
     """
     Параметры подгружаемой карты
